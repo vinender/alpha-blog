@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
 	end 
 
 	def create
-		debugger
+		# debugger
 		#render plain: params[:articles].inspect
 		#This will display what we are passing in
 		@article = Article.new(article_params)
