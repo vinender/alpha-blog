@@ -1,0 +1,2 @@
+ERROR: "bundle info" was called with arguments ["[bootstrap-sass,", "/home/vinender"]
+Usage: "bundle info GEM [OPTIONS]"

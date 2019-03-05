@@ -1,0 +1,2 @@
+ERROR: "bundle info" was called with arguments ["[sass-rails,", "/home/vinender"]
+Usage: "bundle info GEM [OPTIONS]"

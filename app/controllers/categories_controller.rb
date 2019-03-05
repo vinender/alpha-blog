@@ -1,36 +1,60 @@
 class CategoriesController < ApplicationController
 
-	def index
-		@categories = Category.paginate(page: params[:page], per_page: 5)
+before_action :require_admin, except: [:index, :show]
 
-	 end
+def index
 
-	def new
-		@category = Category.new(name: "Sports")
+@categories = Category.paginate(page: params[:page], per_page: 5)
 
-	 end
+end
 
-	def create 
-		@category = Category.new(category_params)
-		if @category.save
-			flash[:success] = "Category was created successfully"
-			redirect_to categories_path
+def new
 
-		else
-			render 'new'
-		end 
+@category = Category.new
 
-	 end 
+end
 
-	def show
+def create
 
-	 end
+@category = Category.new(category_params)
 
-	 private
+if @category.save
 
-	 def category_params
-	 	params.require(:category).permit(:name)
-	 end 
+flash[:success] = "Category was created successfully"
 
+redirect_to categories_path
 
-end 
+else
+
+render 'new'
+
+end
+
+end
+
+def show
+
+end
+
+private
+
+def category_params
+
+params.require(:category).permit(:name)
+
+end
+
+def require_admin
+
+if !logged_in? || (logged_in? and !current_user.admin?)
+
+flash[:danger] = "Only admins can perform that action"
+
+redirect_to categories_path
+
+end
+
+end
+
+end
+
